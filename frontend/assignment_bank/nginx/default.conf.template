@@ -1,0 +1,42 @@
+server {
+    # Nginx will listen on the port specified by the $PORT environment variable
+    # The variable ${PORT} will be substituted by envsubst at container start
+    listen ${PORT};
+
+    server_name _; # Optional: Listen for any server name
+
+    # Root directory for static files
+    root   /usr/share/nginx/html;
+    index  index.html index.htm; # Default file to serve
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying index.html
+        # This is crucial for Single Page Applications (SPAs) like React Router
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Optional: Add Cache-Control headers for static assets for better performance
+    # location ~* \.(?:css|js|png|jpg|jpeg|gif|ico)$ {
+    #     expires 1y;
+    #     add_header Cache-Control "public";
+    # }
+
+    # Optional: Disable access logs for health checks if you add one
+    # location = /healthz {
+    #     access_log off;
+    #     return 200 "healthy";
+    #     add_header Content-Type text/plain;
+    # }
+
+    # Deny access to hidden files like .htaccess
+    location ~ /\. {
+        deny all;
+    }
+
+    # Optional: Configure error pages
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}

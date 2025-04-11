@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+cloud-sql-python-connector[pg8000]
+SQLAlchemy
+pydantic
+pydantic[email]
+gunicorn # Keep if deploying with gunicorn
