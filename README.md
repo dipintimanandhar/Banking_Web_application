@@ -3,7 +3,7 @@
 
 ### Prerequisites
 
-*   Node.js and npm (or yarn)
+*    npm (or yarn)
 *   Python 3.x and pip
 *   Access to a Google Cloud Platform project with:
     *   A Cloud SQL (PostgreSQL) instance configured.
